@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DlgParamSetting</class>
+ <widget class="QDialog" name="DlgParamSetting">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>750</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>750</width>
+    <height>500</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>750</width>
+    <height>500</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>参数设置</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>30</y>
+     <width>331</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>第一帧预览窗口</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>560</x>
+     <y>70</y>
+     <width>55</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>参数设置</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="cmbYUVTYPE">
+   <property name="geometry">
+    <rect>
+     <x>590</x>
+     <y>120</y>
+     <width>141</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>530</x>
+     <y>120</y>
+     <width>55</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>YUV类型</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="cmbFrameRate">
+   <property name="geometry">
+    <rect>
+     <x>590</x>
+     <y>160</y>
+     <width>141</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>530</x>
+     <y>160</y>
+     <width>55</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>帧率</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>530</x>
+     <y>250</y>
+     <width>31</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>宽</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="edVideoWidth">
+   <property name="geometry">
+    <rect>
+     <x>560</x>
+     <y>250</y>
+     <width>51</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="edVideoHeight">
+   <property name="geometry">
+    <rect>
+     <x>640</x>
+     <y>250</y>
+     <width>51</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>620</x>
+     <y>250</y>
+     <width>21</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>高</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btPlay">
+   <property name="geometry">
+    <rect>
+     <x>540</x>
+     <y>320</y>
+     <width>80</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>播放</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btCancel">
+   <property name="geometry">
+    <rect>
+     <x>640</x>
+     <y>320</y>
+     <width>80</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>取消</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="widgetVideoPreview" native="true">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>60</y>
+     <width>491</width>
+     <height>381</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btSetPix">
+   <property name="geometry">
+    <rect>
+     <x>700</x>
+     <y>250</y>
+     <width>31</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>确定</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="cmbPix">
+   <property name="geometry">
+    <rect>
+     <x>590</x>
+     <y>210</y>
+     <width>141</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>6</number>
+   </property>
+   <item>
+    <property name="text">
+     <string>自定义宽高</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>176x120</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>176x144</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>352x240</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>352x288</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>704x480</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>720x480</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>640x480</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>800x600</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1024x768</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1280x1024</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1600x1200</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1280x720</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>1920x1080</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>530</x>
+     <y>210</y>
+     <width>55</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>分辨率</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
