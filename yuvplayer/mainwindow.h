@@ -29,9 +29,13 @@ private slots:
 
     void on_btSetParam_clicked();
 
+    void on_sigParame(PlayParam);
+
+
 private:
     Ui::MainWindow *ui;
     DlgParamSetting* m_pDlgParamSetting;
-    CYUVPlay m_palyer;
+    CYUVPlay* m_palyer;
+    PlayParam m_param;
 };
 #endif // MAINWINDOW_H

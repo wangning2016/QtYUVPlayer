@@ -1,16 +1,29 @@
 #include "dlgparamsetting.h"
 #include "ui_dlgparamsetting.h"
 #include "comdefine.h"
+#include <SDL2/SDL.h>
+
 
 QString g_frameRateArray[] = {"1","2","4","8","16","25","30","60"};
-YUVItem g_YUVItemArray[] = {YUVItem(0,"IUYV"),YUVItem(1,"IYU2"),YUVItem(2,"IYUV(I420)"),YUVItem(3,"NV12"),
-                            YUVItem(4,"NV16"),YUVItem(5,"UYVY"),YUVItem(6,"YUYV"),YUVItem(7,"YV12"),
-                            YUVItem(8,"YV16"),YUVItem(8,"YVYU"),YUVItem(10,"RGB565"),YUVItem(11,"RGB24"),YUVItem(12,"RGB32")};
+YUVItem g_YUVItemArray[] = {YUVItem(SDL_PIXELFORMAT_RGB24,"RGB24"),
+                            YUVItem(SDL_PIXELFORMAT_BGR24,"BGR24"),
+                            YUVItem(SDL_PIXELFORMAT_RGBA32,"RGBA32"),
+                            YUVItem(SDL_PIXELFORMAT_ARGB32,"ARGB32"),
+                            YUVItem(SDL_PIXELFORMAT_BGRA32,"BGRA32"),
+                            YUVItem(SDL_PIXELFORMAT_ABGR32,"ABGR32"),
+                            YUVItem(SDL_PIXELFORMAT_IYUV,"IYUV"),
+                            YUVItem(SDL_PIXELFORMAT_YV12,"YV12"),
+                            YUVItem(SDL_PIXELFORMAT_YUY2,"YUY2"),
+                            YUVItem(SDL_PIXELFORMAT_UYVY,"UYVY"),
+                            YUVItem(SDL_PIXELFORMAT_YVYU,"YVYU"),
+                            YUVItem(SDL_PIXELFORMAT_NV12,"NV12"),
+                            YUVItem(SDL_PIXELFORMAT_NV21,"NV21")};
 
 DlgParamSetting::DlgParamSetting(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DlgParamSetting)
 {
+    m_palyer = nullptr;
     ui->setupUi(this);
     for(int i = 0; i < sizeof(g_frameRateArray)/sizeof(g_frameRateArray[0]);i++)
     {
@@ -18,7 +31,8 @@ DlgParamSetting::DlgParamSetting(QWidget *parent) :
     }
     for(int i = 0; i < sizeof(g_YUVItemArray)/sizeof(g_YUVItemArray[0]); i++)
     {
-        ui->cmbYUVTYPE->addItem(g_YUVItemArray[i].friendName,g_YUVItemArray[i].avPixFormat);
+        QVariant var=g_YUVItemArray[i].avPixFormat;
+        ui->cmbYUVTYPE->addItem(g_YUVItemArray[i].friendName,var);
     }
     ui->cmbFrameRate->setCurrentText("25");
     QRegExp regExp("^(\\d+)(\\d+)?$");
@@ -28,12 +42,18 @@ DlgParamSetting::DlgParamSetting(QWidget *parent) :
     ui->edVideoHeight->setEnabled(false);
     ui->edVideoWidth->setEnabled(false);
     ui->btSetPix->setEnabled(false);
+    m_palyer = new CYUVPlay(this);
     DrawPix();
 }
 
 DlgParamSetting::~DlgParamSetting()
 {
     delete ui;
+    if(m_palyer)
+    {
+        delete m_palyer;
+        m_palyer = NULL;
+    }
 }
 
 void DlgParamSetting::SetFilePath(QString filePath)
@@ -44,8 +64,17 @@ void DlgParamSetting::SetFilePath(QString filePath)
 
 void DlgParamSetting::DrawPix()
 {
-    m_param.avPixformat = ui->cmbPix->currentData().toInt();
+    if(m_palyer == NULL)
+        return;
+
+    m_palyer->SetRenderWidget(ui->widgetVideoPreview);
+    m_param.avPixformat = ui->cmbYUVTYPE->currentData().toInt();
     m_param.frameRate = ui->cmbFrameRate->currentText().toInt();
+    if(m_param.avPixformat == SDL_PIXELFORMAT_IYUV)
+    {
+        int i = 0;
+        i++;
+    }
     QString strVideoHeight,strVideoWidth;
     if(ui->cmbPix->currentIndex() == 0)
     {
@@ -69,10 +98,10 @@ void DlgParamSetting::DrawPix()
     {
         return;
     }
-    m_palyer.SetFilePath(m_filePath);
-    m_palyer.SetParmam(m_param);
-    QPixmap pix = m_palyer.GetYUVFrame(0);
-    m_palyer.setWidgetBkImg(ui->widgetVideoPreview,pix);
+    m_palyer->SetFilePath(m_filePath);
+    m_palyer->SetParmam(m_param);
+
+    m_palyer->Preview(ui->widgetVideoPreview);
 }
 
 void DlgParamSetting::on_btPlay_clicked()

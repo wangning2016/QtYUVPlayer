@@ -36,7 +36,7 @@ private:
     PlayParam m_param;
     Ui::DlgParamSetting *ui;
     QString m_filePath;
-    CYUVPlay m_palyer;
+    CYUVPlay* m_palyer;
 };
 
 #endif // DLGPARAMSETTING_H
